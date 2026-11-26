@@ -1,18 +1,18 @@
 name: azure-login-test
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/azure-login-test.yml"]
 
 permissions:
-  id-token: write   # lets the job request the GitHub OIDC token
+  id-token: write
   contents: read
 
 jobs:
   login:
     runs-on: ubuntu-latest
     steps:
-      - name: Show the subject Azure must trust
-        run: echo "repo:${{ github.repository_owner }}@${{ github.repository_owner_id }}/${{ github.event.repository.name }}@${{ github.repository_id }}:ref:${{ github.ref }}"
-
       - name: Azure login (OIDC, no secret)
         uses: azure/login@v3
         with:
@@ -20,7 +20,9 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Prove access
+      - name: Prove access to the resource group and workspace
         run: |
-          az account show --query "{subscription:name, tenant:tenantId}" -o table
+          az account show --query "{subscription:name}" -o table
           az group show -n rg-cw2-mlops --query "{resourceGroup:name, location:location}" -o table
+          az extension add -n ml -y
+          az ml workspace show -n mlw-cw2 -g rg-cw2-mlops --query "{workspace:name, location:location}" -o table

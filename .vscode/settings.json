@@ -1,0 +1,6 @@
+{
+  "python.analysis.extraPaths": ["src", "scripts"],
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["tests"],
+  "files.eol": "\n"
+}

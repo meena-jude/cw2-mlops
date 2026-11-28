@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+mlruns/
+outputs/
+
+# Data never goes in git: it lives in the Azure ML data asset (see data/manifests/)
+*.csv
+*.joblib
+*.zip

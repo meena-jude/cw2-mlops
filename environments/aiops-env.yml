@@ -1,0 +1,8 @@
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+name: aiops-sklearn
+version: "1"
+image: mcr.microsoft.com/azureml/openmpi5.0-ubuntu24.04:20261122.v1
+conda_file: conda.yml
+description: Python 3.12, scikit-learn 1.6.1 (matches the CW1 preprocessing bundle), MLflow 2.x
+tags:
+  project: cw2

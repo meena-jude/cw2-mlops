@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+experiment_name: aiops-incident-early-warning
+display_name: train-candidate
+description: Train and evaluate one candidate (Iter 0 persistence or Iter 1 logistic regression)
+code: ../src
+command: >-
+  python -m aiops.train
+  --data ${{inputs.data}}
+  --model ${{inputs.model}}
+  --threshold ${{inputs.threshold}}
+  --out ./outputs
+inputs:
+  data:
+    type: uri_folder
+    path: azureml:aiops-model-ready:1
+    mode: ro_mount
+  model: logreg
+  threshold: 0.5
+environment: azureml:aiops-sklearn:1
+compute: azureml:cpu-cluster
+tags:
+  project: cw2

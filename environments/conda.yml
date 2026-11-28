@@ -1,0 +1,14 @@
+name: aiops-sklearn
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - numpy==2.2.6
+      - pandas==2.2.2
+      - scipy==1.15.3
+      - scikit-learn==1.6.1
+      - matplotlib==3.10.8
+      - mlflow-skinny==2.22.5
+      - azureml-mlflow==1.62.0.post7

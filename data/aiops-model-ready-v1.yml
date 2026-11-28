@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: aiops-model-ready
+version: "1"
+type: uri_folder
+# Cloud Shell layout: repo in ~/cw2-mlops, data in ~/cw2data/aiops-v1
+path: ../../cw2data/aiops-v1
+description: >-
+  CW1 final export. model_ready_{train,val,test}.csv (87 features + incident_next_1h),
+  abt_clean.csv (keys), data_quality_log.csv and preprocessing_bundle.joblib.
+  Chronological 70/15/15 split. md5 and row counts in data/manifests/v1.json.
+tags:
+  project: cw2
+  source: Meena_MLOps_CW1.ipynb
+  manifest: data/manifests/v1.json
